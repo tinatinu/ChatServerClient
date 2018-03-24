@@ -12,3 +12,6 @@ public static void main(String args[]) throws Exception
                {
                   DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                   serverSocket.receive(receivePacket);
+                  String sentence = new String( receivePacket.getData());
+                  System.out.println("RECEIVED: " + sentence);
+                  InetAddress IPAddress = receivePacket.getAddress();
