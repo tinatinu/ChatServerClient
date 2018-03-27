@@ -10,6 +10,9 @@ class UDPClient
       InetAddress IPAddress = InetAddress.getByName("localhost");
       byte[] sendData = new byte[1024];
       byte[] receiveData = new byte[1024];
+      boolean flag=true;
+      while(flag)
+       {
       String sentence = inFromUser.readLine();
       sendData = sentence.getBytes();
       DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, 9876);
@@ -18,6 +21,10 @@ class UDPClient
       clientSocket.receive(receivePacket);
       String modifiedSentence = new String(receivePacket.getData());
       System.out.println("FROM SERVER:" + modifiedSentence);
-      clientSocket.close();
+       if(sentence.equals("bye"))
+        flag=false;
+      }
+        clientSocket.close();
    }
+
 }
